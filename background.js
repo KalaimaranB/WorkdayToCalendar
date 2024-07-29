@@ -1,36 +1,32 @@
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.identity.getAuthToken({ interactive: true }, (token) => {
-    if (chrome.runtime.lastError || !token) {
-      console.error('Error getting auth token:', chrome.runtime.lastError);
-      return;
-    }
-    console.log('Auth token retrieved:', token);
+  google.accounts.id.initialize({
+    client_id: 'YOUR_CLIENT_ID',
+    callback: handleCredentialResponse
   });
 });
 
+function handleCredentialResponse(response) {
+  if (response.credential) {
+    const token = response.credential;
+    console.log('Auth token retrieved:', token);
+  } else {
+    console.error('Error getting auth token');
+  }
+}
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'createCalendarAndAddCourses') {
-    chrome.identity.getAuthToken({ interactive: true }, async (token) => {
-      if (chrome.runtime.lastError || !token) {
-        console.error('Error getting auth token:', chrome.runtime.lastError);
-        sendResponse({ error: chrome.runtime.lastError.message });
+    google.accounts.id.prompt((notification) => {
+      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+        console.error('Auth prompt not displayed or skipped');
+        sendResponse({ error: 'Auth prompt not displayed or skipped' });
         return;
       }
 
-      try {
-        const calendarId = await createCalendar(token);
-        for (const course of request.courses) {
-          await addCourseToCalendar(token, calendarId, course);
-        }
-        sendResponse({ success: true });
-      } catch (error) {
-        console.error('Error creating event:', error.message);
-        sendResponse({ error: error.message });
-      }
+      handleCredentialResponse(notification);
     });
 
-    // Required to indicate async response
-    return true;
+    return true; // Required to indicate async response
   }
 });
 
@@ -95,5 +91,6 @@ function buildRecurrenceRule(days, endDate, alternateWeeks) {
   }
   return rule;
 }
+
 //#11dff9;
 //#ffff00;
