@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(() => {
   google.accounts.id.initialize({
-    client_id: 'YOUR_CLIENT_ID',
+    client_id: '538677450042-97rspeteokce233agt5biim9s0kdqj9n.apps.googleusercontent.com',
     callback: handleCredentialResponse
   });
 });
