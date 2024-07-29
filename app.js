@@ -39,7 +39,7 @@ document.getElementById('syncButton').addEventListener('click', async () => {
             stopQuoteDisplay();
         }).catch(error => {
             console.error('Error:', error);
-            document.getElementById('status').innerText = 'Error syncing courses. Please try again.';
+            document.getElementById('status').innerText = 'Error syncing courses. Please try again.' + JSON.stringify(error);
             isSyncing = false;
             stopQuoteDisplay();
         });
