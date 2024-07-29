@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "UBC Courses Calendar",
+  "version": "1.0",
+  "description": "Add UBC courses to Google Calendar",
+  "permissions": [
+    "identity",
+    "identity.email",
+    "storage"
+  ],
+  "oauth2": {
+    "client_id": "538677450042-hd7smcf6op9n6rs7b1ff1quabkofh6v3.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calendar",
+      "https://www.googleapis.com/auth/calendar.events"
+    ],
+    "redirect_uris": [
+    "https://mecjoeobhgglmheohbajapdbifiefobi.chromiumapp.org"
+  ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "128": "images/icon128.png"
+  },
+  "web_accessible_resources": [{
+    "resources": ["quotes.txt", "Starjedi.ttf", "BonaNovaSC-Regular.ttf"],
+    "matches": ["<all_urls>"]
+  }]
+}

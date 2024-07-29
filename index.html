@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UBC Courses Calendar</title>
+    <style>
+        @font-face {
+            font-family: 'Starjedi';
+            src: url('Starjedi.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'BonaNovaSC-Regular';
+            src: url('BonaNovaSC-Regular.ttf') format('truetype');
+        }
+        body {
+            min-width: 200px;
+            min-height: 350px;
+            padding: 10px;
+            font-family: 'Starjedi', Arial, sans-serif;
+            background-color: #282828;
+            color: #11dff9;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            background-color: #FFA500;
+            color: #000;
+            border: none;
+            cursor: pointer;
+        }
+        input {
+            margin-top: 10px;
+        }
+        #status {
+            margin-top: 10px;
+        }
+        .quote {
+            font-family:  'BonaNovaSC-Regular',Arial, sans-serif;
+            font-size: 14px;
+            color: #ffff00;
+            margin-top: 20px;
+            height: 40px;
+            white-space: pre-line; /* Allows for newlines in the quote text */
+        }
+    </style>
+</head>
+<body>
+    <h2>UBC Courses Calendar</h2>
+    <input type="file" id="fileInput" accept=".xlsx">
+    <button id="syncButton">Sync Courses</button>
+    <div id="status"></div>
+    <div id="quote"></div>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="lib/xlsx.full.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
