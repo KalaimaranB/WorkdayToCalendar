@@ -5,8 +5,7 @@
   "description": "Add UBC courses to Google Calendar",
   "permissions": [
     "identity",
-    "identity.email",
-    "storage"
+    "identity.email"
   ],
   "oauth2": {
     "client_id": "538677450042-hd7smcf6op9n6rs7b1ff1quabkofh6v3.apps.googleusercontent.com",
